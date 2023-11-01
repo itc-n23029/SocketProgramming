@@ -19,10 +19,9 @@ def recv_msg(sock, chunk_len=1024):
         yield received_chunk
 
 
-def main():
-    ip_address = input()
+def main(IP_ADDR, PORT):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    client_socket.connect((ip_address, 80))
+    client_socket.connect((IP_ADDR, PORT))
     request_text = 'GET / HTTP/1.0\r\n\r\n'
     request_bytes = request_text.encode('ASCII')
     send_msg(client_socket, request_bytes)
@@ -33,4 +32,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    IP_ADDR, PORT = input()
+    main(IP_ADDR, int(PORT))
