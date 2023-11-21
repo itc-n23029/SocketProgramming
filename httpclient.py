@@ -23,6 +23,8 @@ def main(IP_ADDR, PORT):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((IP_ADDR, PORT))
     request_text = 'GET / HTTP/1.1\r\n\r\n'
+    request_text +='Host: localhost:8000\r\n'
+    request_text +='\r\n'
     request_bytes = request_text.encode('utf-8')
     send_msg(client_socket, request_bytes)
     received_bytes = b''.join(recv_msg(client_socket))
